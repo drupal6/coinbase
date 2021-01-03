@@ -116,8 +116,8 @@ class HuobifGateway(BaseGateway):
     """
 
     default_setting = {
-        "key": "",
-        "secret": "",
+        "access_key": "",
+        "secret_key": "",
         "session_number": 3,
         "proxy_host": "",
         "proxy_port": "",
@@ -135,8 +135,8 @@ class HuobifGateway(BaseGateway):
 
     def connect(self, setting: dict):
         """"""
-        key = setting["key"]
-        secret = setting["secret"]
+        access_key = setting["access_key"]
+        secret_key = setting["secret_key"]
         session_number = setting["session_number"]
         proxy_host = setting["proxy_host"]
         proxy_port = setting["proxy_port"]
@@ -146,10 +146,10 @@ class HuobifGateway(BaseGateway):
         else:
             proxy_port = 0
 
-        self.rest_api.connect(key, secret, session_number,
+        self.rest_api.connect(access_key, secret_key, session_number,
                               proxy_host, proxy_port)
-        self.trade_ws_api.connect(key, secret, proxy_host, proxy_port)
-        self.market_ws_api.connect(key, secret, proxy_host, proxy_port)
+        self.trade_ws_api.connect(access_key, secret_key, proxy_host, proxy_port)
+        self.market_ws_api.connect(access_key, secret_key, proxy_host, proxy_port)
 
         self.init_query()
 
