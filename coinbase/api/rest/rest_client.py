@@ -252,6 +252,7 @@ class RestClient(object):
             request = self.sign(request)
 
             url = self.make_full_url(request.path)
+
             response = session.request(
                 request.method,
                 url,
