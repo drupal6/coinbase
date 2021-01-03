@@ -41,12 +41,12 @@ from coinbase.trader.object import (
 )
 
 
-# REST_HOST = "https://api.huobi.pro"
-REST_HOST = "https://api-aws.huobi.pro"
-# WEBSOCKET_DATA_HOST = "wss://api.huobi.pro/ws"       # Market Data
-WEBSOCKET_DATA_HOST = "wss://api-aws.huobi.pro/ws"       # Market Data
-# WEBSOCKET_TRADE_HOST = "wss://api.huobi.pro/ws/v1"     # Account and Order
-WEBSOCKET_TRADE_HOST = "wss://api-aws.huobi.pro/ws/v2"     # Account and Order
+REST_HOST = "https://api.huobi.pro"
+# REST_HOST = "https://api-aws.huobi.pro"
+WEBSOCKET_DATA_HOST = "wss://api.huobi.pro/ws"       # Market Data
+# WEBSOCKET_DATA_HOST = "wss://api-aws.huobi.pro/ws"       # Market Data
+WEBSOCKET_TRADE_HOST = "wss://api.huobi.pro/ws/v1"     # Account and Order
+# WEBSOCKET_TRADE_HOST = "wss://api-aws.huobi.pro/ws/v2"     # Account and Order
 
 STATUS_HUOBI2VT = {
     "submitted": Status.NOTTRADED,

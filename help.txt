@@ -1,0 +1,24 @@
+conda create -n <你的环境的名称> python=3.7
+conda activate <你的环境名称>
+#conda deactivate
+#conda remove -n <你的环境名称> --all
+
+安装：pip install git+https://github.com/drupal6/coinbase.git
+更新：pip install git+https://github.com/ramoslin02/howtrader.git -U
+
+ta-lib
+win:
+https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta-lib下载对应版本
+pip install 下载文件
+
+linux:
+sudo wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz
+# 解压进入目录
+tar -zxvf ta-lib-0.4.0-src.tar.gz
+cd ta-lib/
+# 编译安装
+sudo ./configure --prefix=/usr
+sudo make
+sudo make install
+# 重新安装python的TA-Lib库
+pip install TA-Lib==0.4.16

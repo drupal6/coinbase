@@ -60,7 +60,7 @@ def get_version_string():
 setup(
     name="coinbase",
     version=get_version_string(),
-    author="vn.py team,Gene",
+    author="vn.py team",
     author_email="vn.py@foxmail.com",
     license="MIT",
     url="https://www.vnpy.com",
