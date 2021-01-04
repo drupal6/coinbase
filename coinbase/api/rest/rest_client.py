@@ -261,7 +261,6 @@ class RestClient(object):
                 data=request.data,
                 proxies=self.proxies,
             )
-            print("url:", url, "request:", request, "response:", response)
             request.response = response
             status_code = response.status_code
             if status_code // 100 == 2:  # 2xx codes are all successful

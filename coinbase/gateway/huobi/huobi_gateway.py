@@ -42,11 +42,8 @@ from coinbase.trader.object import (
 
 
 REST_HOST = "https://api.huobi.pro"
-# REST_HOST = "https://api-aws.huobi.pro"
 WEBSOCKET_DATA_HOST = "wss://api.huobi.pro/ws"       # Market Data
-# WEBSOCKET_DATA_HOST = "wss://api-aws.huobi.pro/ws"       # Market Data
-WEBSOCKET_TRADE_HOST = "wss://api.huobi.pro/ws/v1"     # Account and Order
-# WEBSOCKET_TRADE_HOST = "wss://api-aws.huobi.pro/ws/v2"     # Account and Order
+WEBSOCKET_TRADE_HOST = "wss://api-aws.huobi.pro/ws/v2"     # Account and Order
 
 STATUS_HUOBI2VT = {
     "submitted": Status.NOTTRADED,
@@ -785,6 +782,7 @@ class HuobiDataWebsocketApi(HuobiWebsocketApiBase):
         super().__init__(gateway)
 
         self.req_id: int = 0
+        self.last_bar_id: int = 0
         self.ticks: Dict[str, TickData] = {}
         self.bars: Dict[str, BarData] = {}
 
@@ -917,13 +915,17 @@ class HuobiDataWebsocketApi(HuobiWebsocketApiBase):
         symbol = data["ch"].split(".")[1]
         bar: BarData = self.bars[symbol]
         dt = generate_datetime(float(data["ts"])/1000)
+        bar_id = data["tick"]["id"]
+        if self.last_bar_id > 0 and self.last_bar_id != bar_id:
+            self.gateway.on_bar(copy(bar))
         bar.open_price = float(data['tick']['open'])
         bar.high_price = float(data['tick']['high'])
         bar.low_price = float(data['tick']['low'])
         bar.close_price = float(data['tick']['close'])
         bar.volume = float(data['tick']['vol'])
         bar.datetime = dt
-        self.gateway.on_bar(copy(bar))
+        self.last_bar_id = bar_id
+
 
 def _split_url(url):
     """

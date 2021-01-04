@@ -146,7 +146,7 @@ class CtaEngine(BaseEngine):
 
         for strategy in strategies:
             if strategy.inited:
-                self.call_strategy_func(strategy, strategy.on_bark, bar)
+                self.call_strategy_func(strategy, strategy.on_bar, bar)
 
     def process_order_event(self, event: Event):
         """"""
